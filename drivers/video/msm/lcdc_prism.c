@@ -1,4 +1,4 @@
-/* Copyright (c) 2009, Code Aurora Forum. All rights reserved.
+/* Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -163,7 +163,7 @@ else
 	pinfo.wait_cycle = 0;
 	pinfo.bpp = 24;
 	pinfo.fb_num = 2;
-	pinfo.clk_rate = 38460000;
+	pinfo.clk_rate = 38400000;
 
 #if 1  
 	pinfo.lcdc.h_back_porch = 46;

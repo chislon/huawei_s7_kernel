@@ -581,7 +581,10 @@ BYD_SUNNY_AWB_CCM[] = {
             {0x0990, 0x0086},
             {0x098C, 0xA35F},
             {0x0990, 0x007E},
-            {0x098C, 0xA360},
+            {0x098C, 0xA360},	{0x98C, 0x2735},      //Frame Lines (B)       
+	{0x990, 0x050D},      //      = 1293          
+	{0x98C, 0x2737},      //Line Length (B)       
+	{0x990, 0x07BF},      //      = 1983
             {0x0990, 0x0082},
             {0x098C, 0x2361},
             {0x0990, 0x0040},
@@ -1043,7 +1046,7 @@ preview_snapshot_mode_reg_settings_array2[] = {
 	{0x98C, 0x271F},      //Frame Lines (A)       
 	{0x990, 0x02B3},      //      = 691           
 	{0x98C, 0x2721},      //Line Length (A)       
-	{0x990, 0x05A7},      //      = 1447          
+	{0x990, 0x05A7},      //      = 1447         
 	{0x98C, 0x2723},      //Row Start (B)         
 	{0x990, 0x004 },     //      = 4              
 	{0x98C, 0x2725},      //Column Start (B)      

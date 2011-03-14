@@ -1564,7 +1564,7 @@ static int kgsl_mmap(struct file *file, struct vm_area_struct *vma)
 		result = -EINVAL;
 		goto done;
 	}
-	vma->vm_page_prot = pgprot_noncached(vma->vm_page_prot);
+	vma->vm_page_prot = pgprot_writecombine(vma->vm_page_prot);
 
 	result = remap_pfn_range(vma, vma->vm_start, vma->vm_pgoff,
 				vma_size, vma->vm_page_prot);
@@ -1693,10 +1693,6 @@ static int __devinit kgsl_platform_probe(struct platform_device *pdev)
 
 	/* put the AXI bus into asynchronous mode with the graphics cores */
 	if (pdata != NULL) {
-		if ((pdata->set_grp2d_async != NULL) &&
-			(pdata->max_grp2d_freq) &&
-			(!pdata->set_grp2d_async()))
-			clk_set_min_rate(clk, pdata->max_grp2d_freq);
 		if ((pdata->set_grp3d_async != NULL) &&
 			(pdata->max_grp3d_freq) &&
 			(!pdata->set_grp3d_async()))
@@ -1724,6 +1720,11 @@ static int __devinit kgsl_platform_probe(struct platform_device *pdev)
 		KGSL_DRV_ERR("clk_get(grp_2d_clk) returned %d\n", result);
 	}
 	kgsl_driver.g12_grp_clk = clk;
+
+	if ((pdata->set_grp2d_async != NULL) &&
+			(pdata->max_grp2d_freq) &&
+			(!pdata->set_grp2d_async()))
+			clk_set_min_rate(clk, pdata->max_grp2d_freq);
 
 	kgsl_driver.power_flags = 0;
 

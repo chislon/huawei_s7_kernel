@@ -65,7 +65,6 @@
 #include "kgsl_log.h"
 #include "kgsl_pm4types.h"
 
-#define DISABLE_SHADOW_WRITES
 /*
 *
 *  Memory Map for Register, Constant & Instruction Shadow, and Command Buffers
@@ -211,7 +210,8 @@ unsigned int uint2float(unsigned int uintval)
 	}
 
 	/* Calculate fraction */
-	frac = (uintval & (~(1 << exp))) << (23 - exp);
+	if (23 > exp)
+		frac = (uintval & (~(1 << exp))) << (23 - exp);
 
 	/* Exp is biased by 127 and shifted 23 bits */
 	exp = (exp + 127) << 23;

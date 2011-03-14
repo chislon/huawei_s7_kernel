@@ -57,12 +57,12 @@ static struct q6_hw_info q6_audio_hw[Q6_HW_COUNT] = {
 		.max_gain = 602,
 	},
 	[Q6_HW_HEADSET] = {
-		.min_gain = -903,
-		.max_gain = 602,
+		.min_gain = -2500,
+		.max_gain = 2000,
 	},
 	[Q6_HW_SPEAKER] = {
-		.min_gain = -903,
-		.max_gain = 602,
+		.min_gain = -6000,
+		.max_gain = 0,
 	},
 	[Q6_HW_TTY] = {
 		.min_gain = -2000,
@@ -1322,7 +1322,7 @@ int q6audio_set_tx_mute(int mute)
 
 int q6audio_set_stream_volume(struct audio_client *ac, int vol)
 {
-	if (vol > 1200 || vol < -4000) {
+	if (vol > 1200 || vol < -6000) {
 		pr_err("unsupported volume level %d\n", vol);
 		return -EINVAL;
 	}

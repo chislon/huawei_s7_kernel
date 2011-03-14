@@ -63,7 +63,7 @@
 		TSSC_CTL_EN)
 
 #define TSSC_NUMBER_OF_OPERATIONS 2
-#define TS_PENUP_TIMEOUT_MS 50
+#define TS_PENUP_TIMEOUT_MS 20
 
 #define X_OFFSET	
 #define Y_OFFSET	

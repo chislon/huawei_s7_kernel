@@ -163,6 +163,7 @@ static const uint32_t hs_key_map[] = {
 enum {
 	NO_DEVICE	= 0,
 	MSM_HEADSET	= 1,
+	MSM_HEADSET_NO_MIC	= 2,
 };
 
 struct msm_handset {
@@ -194,7 +195,7 @@ static struct wake_lock gHeadsetWakeLock;
 static void report_headset_switch(struct input_dev *dev, int key, int value)
 {
 	struct msm_handset *hs = input_get_drvdata(dev);
-
+	value *= 2;	// Hack to force headset no mic
 	input_report_switch(dev, key, value);
 	switch_set_state(&hs->sdev, value);
 }
@@ -511,6 +512,8 @@ static ssize_t msm_headset_print_name(struct switch_dev *sdev, char *buf)
 		return sprintf(buf, "No Device\n");
 	case MSM_HEADSET:
 		return sprintf(buf, "Headset\n");
+	case MSM_HEADSET_NO_MIC:
+		return sprintf(buf, "Headset no mic\n");
 	}
 	return -EINVAL;
 }
